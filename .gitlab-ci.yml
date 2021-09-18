@@ -28,3 +28,12 @@ frontend-build:
     - npm install
   script:
     - npm run build
+
+backend-build:
+  image: node:latest
+  stage: build
+  before_script:
+    - cd backend
+    - npm install
+  script:
+    - npm run build
