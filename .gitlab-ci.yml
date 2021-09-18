@@ -7,15 +7,15 @@ frontend-test:
   stage: test
   before_script:
     - cd frontend
-    - yarn
+    - npm install
   script:
-    - yarn test
+    - npm run test
 
 frontend-build:
   image: node:latest
   stage: build
   before_script:
     - cd frontend
-    - yarn
+    - npm install
   script:
-    - yarn build
+    - npm run build
