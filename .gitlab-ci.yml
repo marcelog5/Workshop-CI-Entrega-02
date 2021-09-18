@@ -11,6 +11,15 @@ frontend-test:
   script:
     - npm run test
 
+backend-test:
+  image: node:latest
+  stage: test
+  before_script:
+    - cd backend
+    - npm install
+  script:
+    - npm run unittest
+
 frontend-build:
   image: node:latest
   stage: build
