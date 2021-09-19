@@ -1,6 +1,7 @@
 stages:
   - test
   - build
+  - deploy
 
 frontend-test:
   image: node:latest
@@ -37,3 +38,15 @@ backend-build:
     - npm install
   script:
     - npm run build
+
+frontend-deploy:
+  image: docker:latest
+  stage: deploy
+  services:
+    - docker:dind
+  before_script:
+    - cd frontend
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
